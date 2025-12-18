@@ -11,20 +11,12 @@ const config: StorybookConfig = {
     "@storybook/addon-a11y",
     "@storybook/addon-vitest",
   ],
-  async viteFinal(config) {
-    config.plugins = config.plugins || [];
-
-    
-    config.plugins.push(
-      svgr({
-        
-        include: "**/*.svg?react",
-      })
-    );
-
-    config.plugins.push(tailwindcss());
-    return config;
-  },
+async viteFinal(config) {
+  config.plugins = config.plugins || [];
+  config.plugins.push(svgr({ include: "**/*.svg?react" }));
+  config.plugins.push(tailwindcss());
+  return config;
+}
 };
 
 export default config;

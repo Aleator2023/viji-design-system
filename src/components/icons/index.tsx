@@ -6,7 +6,7 @@ import Close24 from "../../assets/close_24.svg?react";
 import Plus16 from "../../assets/plus_16.svg?react";
 import Plus24 from "../../assets/plus_24.svg?react";
 
-import More16 from "../../assets/More-3_dots_16.svg?react";
+import More16 from "../../assets/more_16.svg?react";
 
 import ArrowNext24 from "../../assets/arrow-next_24.svg?react";
 

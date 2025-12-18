@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Button } from "../components/Button/Button";
 
-// Если хочешь оставить кастомную иконку для демонстрации icon prop
+
 const PlusIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" {...props}>
     <path

@@ -23,11 +23,13 @@ export default defineConfig(({ command }) => {
       react(),
       tailwindcss(),
 
-      // Типы нужны только при сборке пакета
+     
       isBuild
         ? dts({
             entryRoot: "src",
             insertTypesEntry: true,
+            tsconfigPath: "./tsconfig.json",
+            include: ["src"],
           })
         : undefined,
     ].filter(Boolean),

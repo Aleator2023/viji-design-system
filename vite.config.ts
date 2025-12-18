@@ -2,13 +2,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import svgr from "vite-plugin-svgr";
+import dts from "vite-plugin-dts";
 
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import { playwright } from "@vitest/browser-playwright";
-
-import dts from "vite-plugin-dts";
 
 const dirname =
   typeof __dirname !== "undefined"
@@ -20,27 +20,28 @@ export default defineConfig(({ command }) => {
 
   return {
     plugins: [
+      svgr({ include: "**/*.svg?react" }),
       react(),
       tailwindcss(),
-
-     
-    isBuild
-      ? dts({
-          entryRoot: "src",
-          insertTypesEntry: true,
-          tsconfigPath: "./tsconfig.app.json",
-          include: ["src/**/*.ts", "src/**/*.tsx"],
-          exclude: [
-            "src/stories/**",
-            "**/*.stories.*",
-            "**/*.test.*",
-            "**/*.spec.*",
-            ".storybook/**",
-          ],
-          rollupTypes: false,
-        })
-      : undefined,
-        ].filter(Boolean),
+      ...(isBuild
+        ? [
+            dts({
+              entryRoot: "src",
+              insertTypesEntry: true,
+              tsconfigPath: "./tsconfig.app.json",
+              include: ["src/**/*.ts", "src/**/*.tsx"],
+              exclude: [
+                "src/stories/**",
+                "**/*.stories.*",
+                "**/*.test.*",
+                "**/*.spec.*",
+                ".storybook/**",
+              ],
+              rollupTypes: false,
+            }),
+          ]
+        : []),
+    ],
 
     ...(isBuild
       ? {

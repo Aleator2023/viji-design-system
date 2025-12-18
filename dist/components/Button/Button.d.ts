@@ -1,0 +1,19 @@
+import { default as React } from 'react';
+import { IconName } from '../icons';
+type Variant = "primary" | "secondary" | "outline" | "ghost";
+type Height = 32 | 44;
+type Shape = "rect" | "square";
+type IconPosition = "none" | "left" | "right" | "center";
+export type ButtonProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "disabled"> & {
+    variant?: Variant;
+    height?: Height;
+    shape?: Shape;
+    fullWidth?: boolean;
+    isLoading?: boolean;
+    iconName?: IconName;
+    icon?: React.ReactNode;
+    iconPosition?: IconPosition;
+    disabled?: boolean;
+};
+export declare function Button({ variant, height, shape, fullWidth, isLoading, disabled, className, children, iconName, icon, iconPosition, type, ...props }: ButtonProps): import("react/jsx-runtime").JSX.Element;
+export {};

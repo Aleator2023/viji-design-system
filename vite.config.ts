@@ -24,17 +24,24 @@ export default defineConfig(({ command }) => {
       tailwindcss(),
 
      
-      isBuild
-        ? dts({
-            entryRoot: "src",
-            insertTypesEntry: true,
-            tsconfigPath: "./tsconfig.json",
-            include: ["src"],
-          })
-        : undefined,
-    ].filter(Boolean),
+    isBuild
+      ? dts({
+          entryRoot: "src",
+          insertTypesEntry: true,
+          tsconfigPath: "./tsconfig.app.json",
+          include: ["src/**/*.ts", "src/**/*.tsx"],
+          exclude: [
+            "src/stories/**",
+            "**/*.stories.*",
+            "**/*.test.*",
+            "**/*.spec.*",
+            ".storybook/**",
+          ],
+          rollupTypes: false,
+        })
+      : undefined,
+        ].filter(Boolean),
 
-    // Library build только при vite build
     ...(isBuild
       ? {
           build: {

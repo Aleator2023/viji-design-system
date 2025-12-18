@@ -61,7 +61,7 @@ const variantStyles: Record<Variant, string> = {
 
 const iconSizeByHeight: Record<Height, string> = {
   32: "h-4 w-4",
-  44: "h-5 w-5",
+  44: "h-6 w-6",
 };
 
 function cx(...parts: Array<string | false | null | undefined>) {

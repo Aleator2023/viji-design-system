@@ -35,7 +35,7 @@ const heightStyles: Record<Height, string> = {
 
 const paddingsRectBase: Record<Height, string> = {
   32: "px-4", 
-  44: "px-5", 
+  44: "px-7", 
 };
 
 const gapByHeight: Record<Height, string> = {

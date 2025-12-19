@@ -272,7 +272,7 @@ const ce = (n) => /* @__PURE__ */ r.createElement("svg", { width: 16, height: 16
   44: "h-11 text-[14px] leading-[18px] font-medium"
 }, Q = {
   32: "px-4",
-  44: "px-5"
+  44: "px-7"
 }, we = {
   32: "gap-1",
   44: "gap-2"

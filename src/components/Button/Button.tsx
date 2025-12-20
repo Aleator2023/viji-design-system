@@ -6,6 +6,8 @@ type Variant = "primary" | "secondary" | "outline" | "ghost";
 type Height = 32 | 44;
 type Shape = "rect" | "square";
 type IconPosition = "none" | "left" | "right" | "center";
+type Align = "center" | "start";
+
 
 export type ButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -16,16 +18,17 @@ export type ButtonProps = Omit<
   shape?: Shape;
   fullWidth?: boolean;
   isLoading?: boolean;
-
   iconName?: IconName;
   icon?: React.ReactNode;
   iconPosition?: IconPosition;
-
   disabled?: boolean;
+  align?: Align;          
+  active?: boolean;   
+  hoverStyle?: "default" | "none";
 };
 
 const base =
-  "inline-flex select-none items-center justify-center rounded-lg transition " +
+  "inline-flex select-none items-center rounded-lg transition " +
   "disabled:cursor-not-allowed";
 
 const heightStyles: Record<Height, string> = {
@@ -106,11 +109,11 @@ export function Button({
   disabled,
   className,
   children,
-
   iconName,
   icon,
   iconPosition = "none",
-
+  align = "center",
+  active = false,
   type,
   ...props
 }: ButtonProps) {
@@ -142,6 +145,7 @@ const resolvedIcon: React.ReactNode =
     base,
     heightStyles[height],
     variantStyles[variant],
+    active && "bg-white/10 text-white border border-white/5", 
     shape === "rect" && getRectPadding(height, enforcedIconPosition, hasIcon),
     shape === "square" && cx("px-0", squareSize),
     fullWidth && shape !== "square" && "w-full",

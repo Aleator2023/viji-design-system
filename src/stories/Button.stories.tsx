@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { Button } from "../components/Button/Button";
-
+import { ICONS } from "../components/icons";
 
 const PlusIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" {...props}>
@@ -13,6 +13,8 @@ const PlusIcon = (props: React.SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+const iconOptions = [undefined, ...(Object.keys(ICONS) as Array<keyof typeof ICONS>)];
 
 const meta: Meta<typeof Button> = {
   title: "UI/Button",
@@ -35,11 +37,10 @@ const meta: Meta<typeof Button> = {
     },
 
 
-      iconName: {
-        control: "select",
-        options: [undefined, "close", "plus", "more", "arrowNext"],
-      },
-
+    iconName: {
+      control: "select",
+      options: iconOptions,
+    },
   
     icon: { table: { disable: true } },
 
@@ -100,7 +101,7 @@ export const Variants: Story = {
   ),
 };
 
-// ===== IconName (иконка из реестра) =====
+// ===== IconName  =====
 
 export const CloseSquare44: Story = {
   args: {
@@ -108,9 +109,7 @@ export const CloseSquare44: Story = {
     shape: "square",
     height: 44,
     variant: "ghost",
-    // для square текст обычно не нужен
     children: "",
-    // iconPosition можно не задавать — square сам принудит center
   },
 };
 
@@ -180,4 +179,18 @@ export const Disabled: Story = {
     disabled: true,
     children: "Disabled",
   },
+};
+
+export const WithGridIcon = {
+  render: () => (
+    <Button shape="square" variant="secondary" iconName="grid" />
+  ),
+};
+
+export const WithHeartIcon = {
+  render: () => (
+    <Button iconName="heart" iconPosition="left">
+      Favorite
+    </Button>
+  ),
 };
